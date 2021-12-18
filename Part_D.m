@@ -1,5 +1,3 @@
-
-
 clear all;
 clc;
 close all;
@@ -34,7 +32,7 @@ J = jacobian(Model, q);
 q_e = [0 0 0 0 0 0];
 
 
-A = subs(J, q, q_e);
+A = subs(J, q, q_e)
 B = [0; 1/M; 0; 1/(l1*M); 0; 1/(l2*M)];
 C = eye(size(A));
 D=0;
@@ -51,7 +49,7 @@ g = 9.81;
 
 A = double(subs(A));
 B = double(subs(B));
-eigs(A);
+eigs(A)
 Q = zeros(6);
 Q(1,1) = 3000;
 Q(2,2) = 0;
@@ -74,11 +72,12 @@ initial_state = [ x0, 0, theta1_0, 0, theta2_0, 0];
 state_feedback_ss = ss(Ac, B, C, D);
 
 
-[y_open, t_open, x_open] = initial(open_sys, initial_state);
-[y_closed, t_closed, x_closed] = initial( state_feedback_ss, initial_state);
+% [y_open, t_open, x_open] = initial(open_sys, initial_state);
+% [y_closed, t_closed, x_closed] = initial( state_feedback_ss, initial_state);
 %%step(state_feedback_ss, 300)
-hold on
-plot(t_closed(:,1),y_closed(:,1),t_closed(:,1),y_closed(:,3), t_closed(:,1),y_closed(:,5));
-legend x theta1 theta2
-title 'Unit step response of LQR Controller'
-hold off
+% hold on
+% plot(t_closed(:,1),y_closed(:,1),t_closed(:,1),y_closed(:,3), t_closed(:,1),y_closed(:,5));
+% legend x theta1 theta2
+% title 'Unit step response of LQR Controller'
+% hold off
+initial( state_feedback_ss, initial_state);
