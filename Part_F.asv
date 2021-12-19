@@ -59,28 +59,15 @@ initial(ss_obs1, initial_state)
 figure(2)
 step(ss_obs1)
 
-% For C3
-L3 = place(A', c3', observer_poles)';
-A_obs3 = [(A-B*K_lqr) B*K_lqr; 
-        zeros(size(A)) (A-L3*c3)];
-B_obs3 = [B;zeros(size(B))];
-C_obs3 = [c3 zeros(size(c3))];
-ss_obs3 = ss(A_obs3, B_obs3, C_obs3, D)
+% For C1
+L1 = place(A', c1', observer_poles)';
+A_obs1 = [(A-B*K_lqr) B*K_lqr; 
+        zeros(size(A)) (A-L1*c1)];
+B_obs1 = [B;zeros(size(B))];
+C_obs1 = [c1 zeros(size(c1))];
+ss_obs1 = ss(A_obs1, B_obs1, C_obs1, D)
 
-figure(3)
-initial(ss_obs3, initial_state)
-figure(4)
-step(ss_obs3)
-
-% For C4
-L4 = place(A', c4', observer_poles)';
-A_obs4 = [(A-B*K_lqr) B*K_lqr; 
-        zeros(size(A)) (A-L4*c4)];
-B_obs4 = [B;zeros(size(B))];
-C_obs4 = [c4 zeros(size(c4))];
-ss_obs4 = ss(A_obs4, B_obs4, C_obs4, D)
-
-figure(5)
-initial(ss_obs4, initial_state)
-figure(6)
-step(ss_obs4)
+figure(1)
+initial(ss_obs1, initial_state)
+figure(2)
+step(ss_obs1)
